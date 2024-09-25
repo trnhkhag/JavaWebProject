@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/thongke.css">
+	<link rel="stylesheet" href="fontawesome-free-6.2.0-web/css/all.css">
+
+    <title>BKMT Watch</title>
+</head>
+<body>
+    <div id="container">
+        <div class="top"></div>
+        <div class="left">
+            <div class="header">
+                <ul class="list">
+                    <li>
+                        <h3>Thời gian</h3>
+                        <div class="time">
+        
+                            <select style="border-radius: 0.355rem; width: 160px;height: 20px; margin-left: 40px; ">
+                            <option value="1">24 giờ vừa qua</option>
+                            <option value="2">1 tuần vừa qua</option>
+                            <option value="3">1 tháng vừa qua</option>
+                        </select><br>
+                        <span>Ngày: <input style="margin-top:10px; border-radius: 0.355rem;" type="datetime-local"> </span>
+                        </div>
+                    </li>
+                    <li>
+                        <h3>Tìm kiếm</h3>
+                        <div class="search">
+                            <input type="search" placeholder="Tìm kiếm tên sản phẩm...">
+                        </div>
+                    </li>
+                    <li>
+                        <h3>Doanh thu</h3>
+                        <div class="price">
+                            <span style="margin-left:10px ;">Từ:  <input type="text" placeholder="Giá trị"></span><br>
+                            <span>Đến: <input type="text" placeholder="Giá trị"></span>
+
+                        </div>
+                    </li>
+                    <li>
+                        <h3>Sản phẩm</h3>
+                        <div class="products">
+                            <select name="products" id="products"  style="border-radius:0.355rem ;">
+                                <option value="1">Một sản phẩm</option>
+                                <option value="2">Tất cả sản phẩm</option>
+
+                            </select>
+
+                        </div>
+                    </li>
+                    <li>
+                        <h3>Tỉ lệ mua hàng</h3>
+                        <div class="stt">
+                            <input style="margin-left:-55px ;" type="radio" name="stt"><span style="margin-left:10px ;">Tỉ lệ cao</span><br>
+                            <input style="margin-left:-50px ;" type="radio" name="stt" ><span style="margin-left:10px ;">Tỉ lệ thấp</span>
+                        </div>
+                    </li>
+                    <li>
+                        <h3>Trạng thái</h3>
+                        <div class="stt">
+                            <input style="margin-left:-45px ;" type="radio" name="stt1"> <span style="margin-left:5px ;">Hoàn thành</span><br>
+                            <input style="margin-left:-10px" type="radio" name="stt1"><span style="margin-left:5px ;"> Chưa hoàn thành</span>
+                        </div>
+                    </li>
+                    <li>
+                    
+                        <button class="search" id="search" onclick="show()">TÌM KIẾM</button>
+                        
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="right" id="right" style="display: none ;">
+
+            <h3 style="font-size:30px;">Bảng thống kê</h3><br>
+`            <div class="doanhthu">
+				<div class="v1">
+					<ul class="dt">
+						<li style="font-weight: bold;"><i class="fa-solid fa-dollar-sign" id="dollar"></i> Doanh thu</li>
+						<li>6.000.000</li>
+					</ul>
+				</div>
+				<div class="v2">
+					<ul class="tongvon">
+						<li style="font-weight: bold;"><i class="fa-solid fa-dollar-sign" id="dollar1"></i> Tổng chi</li>
+						<li>0</li>
+					</ul>
+				
+				</div>
+				<div class="v3">
+					<ul class="trahang">
+						<li style="font-weight: bold;"><i class="fa-solid fa-arrow-rotate-left" id="back"></i> Hoàn hàng</li>
+						<li>0</li>
+					</ul>
+				
+				</div>
+				<div class="v4">
+					<ul class="loinhuan">
+						<li style="font-weight: bold;"><i class="fa-solid fa-dollar-sign" id="dollar3"></i> Lợi nhuận</li>
+						<li>0</li>
+					</ul>
+				</div>
+			</div> 
+                <div class="bang">
+                        <table>
+                        <tr>
+                            <th>STT</th>
+                            <th>TÊN SẢN PHẨM</th>
+                            <th style="width:15px">SỐ LƯỢNG BÁN</th>
+                            <th>NGÀY BÁN</th>
+                            <th>GIÁ TIỀN</th>
+                            <th>TRẠNG THÁI</th>
+                            <th>TỈ LỆ</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td style="font-weight:bold ;">HAZEAL</td>
+                            <td>2</td>
+                            <td>20/11/2022</td>
+                            <td>4000.000</td>
+                            <td style="color:green;">HOÀN THÀNH</td> 
+                            <td>100%</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td style="font-weight:bold ;">MINI-FOCUS</td>
+                            <td>1</td>
+                            <td>20/11/2022</td>
+                            <td>2000.000</td>
+                            <td style="color:green;">HOÀN THÀNH</td> 
+                            <td>80%</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td style="font-weight:bold ;">DATE-JUST</td>
+                            <td>1</td>
+                            <td>20/11/2022</td>
+                            <td>2000.000</td>
+                            <td style="color:red;">CHƯA HOÀN THÀNH</td> 
+                            <td>0% <br>
+                                <a href="">xem chi tiết</a></td>
+                        </tr>
+                    </table>
+                    <nav class="pagenumber">
+                        <ul class="number">
+                            <li><a href=""><</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">2</a></li>
+                            <li><a href="">3</a></li>
+                            <li><a href="">></a></li>
+                        </ul>
+                    </nav>
+                </div>
+        </div>
+    </div>
+
+</body>
+<script>
+       function show(){
+        document.getElementById('right').style.display="block";
+       }
+
+</script>
+</html>
+

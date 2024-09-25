@@ -1,0 +1,285 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 100px 60px auto;
+    grid-template-areas:
+    "header header"
+    "sidebar navigationbar"
+    "sidebar content";
+}
+
+.container .header {
+    grid-area: header;
+}
+
+.container .sidebar {
+    grid-area: sidebar;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #ffeaa7;
+}
+
+.container .navigationbar {
+    grid-area: navigationbar;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 0 15px;
+}
+
+.container .content {
+    grid-area: content;
+    padding: 0 15px;
+}
+
+.mini_header {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffad33;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.timer, .search, .price_range {
+    background-color: #fff;
+    padding: 0 10px;
+}
+
+.timer form, .search form, .price_range form {
+    font-size: 30px;
+    padding: 10px 0;
+}
+
+.timer form select, #search, #date {
+    width: 100%;
+    height: 26px;
+}
+
+.search input {
+    margin-bottom: 5px;
+}
+
+label {
+    text-align: left;
+    font-size: 16px;
+}
+
+.price_range {
+    position: relative;
+}
+
+.price_range input {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 80%;
+    height: 26px;
+    position: absolute;
+    right: 10px;
+}
+
+table {
+    background-color: #fff;
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.thead {
+    height: 40px;
+    background-color: #ffad33;
+}
+
+td {
+    height: 40px;
+    border: 0.5px solid gray;
+}
+
+.order:hover {
+    background-color: #ffdead;
+}
+
+.page {
+    text-align: center;
+    margin: 50px 0;
+}
+
+.page li {
+    display: inline-block;
+}
+
+.page li a {
+    text-decoration: none;
+    color: #000000;
+    text-align: center;
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 0.357rem;
+    border: 1px solid #e6e6e6;
+    background: #f5f5f5;
+}
+
+.page li a:hover {
+    background-color: #ffdead;
+}
+
+button {
+    height: 30px;
+    width: 30px;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+button:hover {
+    background-color: #ffdead;
+}
+
+.current {
+    background-color: #ffad33;
+}
+
+a:hover {
+    color: red;
+}
+
+.setting {
+    width: 80px;
+    background-color: #ffad33;
+    color: black;
+}
+
+.setting:hover {
+    background-color: #ffdead;
+}
+
+.title, .nav-btn {
+    width: 50%;
+}
+
+.nav-btn {
+    text-align: right;
+}
+
+.sidebar select, .sidebar input {
+    border: none;
+    border-radius: 5px;
+}
+
+.sidebar h3 {
+    background-color: #ffad33;
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    padding: 5px 0;
+    border-radius: 0.355rem;
+}
+
+.sidebar .filter {
+    padding: 20px 10px;
+}
+
+.sidebar .filter input {
+    height: 26px;
+    font-size: 15px;
+}
+
+#time {
+    width: 100%;
+    height: 26px;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+#date {
+    width: 78%;
+}
+
+.date {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.start_price {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.end_price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status, .sort {
+    display: flex;
+    align-items: center;
+}
+
+.status label, .sort label {
+    margin-left: 10px;
+}
+
+.next_page, .previous_page, .page_number {
+    background-color: #ffdead;
+}
+
+.page button {
+    margin-right: 2px;
+    border-radius: 5px;
+}
+
+.page button:hover {
+    background-color: #ffad33;
+}
+
+.current_page {
+    background-color: #ffad33 !important;
+    color: #fff !important;
+}
+
+.current_page:hover {
+    background-color: #ffdead !important;
+}
+
+.sidebar .filter a {
+    text-decoration: none;
+    background-color: #ffad33;
+    font-size: 16;
+    font-family: 'Times New Roman', Times, serif;
+    color: #fff;
+    padding: 5px 40px;
+    display: block;
+    font-weight: bold;
+    border-radius: 0.355rem;
+}
+
+.sidebar .filter a:hover {
+    background-color: #ffdead;
+}

@@ -1,0 +1,51 @@
+.header .brand {
+    color: #ffad33;
+    font-weight: 800;
+    font-size: 24px;
+    text-transform: uppercase;
+    font-family: "Poppins", Arial, sans-serif;
+    text-align: center;
+    margin: 0.5rem 0;
+}
+
+.header .nav-bar {
+    display: flex;
+    background-color: #ffad33;
+    padding: 0 1rem;
+    justify-content: space-between;
+}
+
+.header .function {
+    padding: 1rem 0;
+}
+
+.nav-bar ul {
+    display: flex;
+}
+
+.nav-bar li {
+    display: list-item;
+    list-style: none;
+    text-align: center;
+}
+
+.nav-bar ul li a, .nav-bar .logout a {
+    font-size: 18px;
+    padding: 1rem 20px;
+    font-weight: 400;
+    color: #000;
+    text-transform: uppercase;
+    opacity: 1 !important;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-bar ul li a:hover, .nav-bar .logout a:hover {
+    background-color: #ffdead;
+}
+
+.nav-bar .logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

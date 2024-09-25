@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>BKMT WATCH | Order</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+  <link rel="stylesheet" href="css/animate.css">
+
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
+
+  <link rel="stylesheet" href="css/aos.css">
+
+  <link rel="stylesheet" href="css/ionicons.min.css">
+
+  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+  <link rel="stylesheet" href="fontawesome-free-6.2.0-web/css/all.css">
+
+  <link rel="stylesheet" href="css/flaticon.css">
+  <link rel="stylesheet" href="css/icomoon.css">
+  <link rel="stylesheet" href="css/admin_header.css">
+  <link rel="stylesheet" href="css/order_style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <p class="brand">BKMT WATCH</p>
+      <div class="nav-bar">
+        <div class="function">
+          <ul>
+            <li><a href="#">Quản Lí Users</a></li>
+            <li><a href="#">Sản Phẩm</a></li>
+            <li><a href="order.html">Đơn Hàng</a></li>
+            <li><a href="thongke.html">Thống Kê</a></li>
+          </ul>
+        </div>
+        <div class="logout">
+          <a href="#"><i class="fa-solid fa-right-from-bracket"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <h3>Thời gian</h3>
+      <div class="filter">
+        <form action="#">
+          <select name="time" id="time">
+            <option value="Ngày">24 giờ vừa qua</option>
+            <option value="Tuần">Tuần vừa qua</option>
+            <option value="Tháng">Tháng vừa qua</option>
+          </select>
+          <div class="date">
+            <label for="date">Ngày: </label>
+            <input type="date" name="date" id="date">
+          </div>
+        </form>
+      </div>
+
+      <h3>Tìm kiếm</h3>
+      <div class="filter">
+        <form action="#">
+          <input type="text" name="search" id="search" placeholder=" Tìm kiếm theo tên, sđt...">
+        </form>
+      </div>
+
+      <h3>Giá tiền</h3>
+      <div class="filter">
+        <form action="#">
+          <div class="start_price">
+            <label for="sprice">Từ: </label>
+            <input type="text" name="sprice" id="sprice" placeholder=" Giá trị">
+          </div>
+          <div class="end_price">
+            <label for="eprice">Đến: </label>
+            <input type="text" name="eprice" id="eprice" placeholder=" Giá trị">
+          </div>
+        </form>
+      </div>
+
+      <h3>Trạng thái</h3>
+      <div class="filter">
+        <form action="#">
+          <div class="status" style="margin-bottom: 10px;">
+            <input type="radio" name="status" id="complete" value="complete">
+            <label for="complete"> Hoàn thành</label>
+          </div>
+          <div class="status">
+            <input type="radio" name="status" id="incomplete" value="incomplete">
+            <label for="incomplete"> Chưa hoàn thành</label>
+          </div>
+        </form>
+      </div>
+
+      <h3>Sắp xếp</h3>
+      <div class="filter">
+        <form action="#">
+          <div class="sort" style="margin-bottom: 10px;">
+            <input type="radio" name="sort" id="bytime" value="bytime">
+            <label for="bytime">Theo thời gian</label>
+          </div>
+          <div class="sort">
+            <input type="radio" name="sort" id="byprice" value="byprice">
+            <label for="byprice">Theo giá trị</label>
+          </div>
+        </form>
+      </div>
+
+      <div class="filter center" style="padding-top: 0;">
+          <a href="#">Lọc</a>
+      </div>
+    </div>
+
+
+    <div class="navigationbar">
+      <div class="title">
+        <h1>Đơn Hàng</h1>
+      </div>
+      <div class="nav-btn">
+        <button type="button" class="setting">Chỉnh sửa</button>
+      </div>
+    </div>
+    <div class="content">
+      <table>
+        <tr class="thead">
+          <th>Trạng thái</th>
+          <th>Tên khách hàng</th>
+          <th>Số điện thoại</th>
+          <th>Thời gian</th>
+          <th>Giá tiền</th>
+          <th>Chi tiết</th>
+        </tr>
+        <tr class="order">
+          <td class="check"><input type="checkbox" id="order1" name="order1" value="complete"></td>
+          <td>Phạm Hoàng Bách</td>
+          <td>0123456789</td>
+          <td>15:30 22/11/2021</td> 
+          <td>20$</td>
+          <td><a href="order_detail.html">Chi tiết</a></td>
+        </tr>
+        <tr class="order">
+          <td class="check"><input type="checkbox" id="order1" name="order1" value="complete"></td>
+          <td>Phạm Hoàng Bách</td>
+          <td>0123456789</td>
+          <td>15:30 22/11/2021</td> 
+          <td>20$</td>
+          <td><a href="order_detail.html">Chi tiết</a></td>
+        </tr>
+        <tr class="order">
+          <td class="check"><input type="checkbox" id="order1" name="order1" value="complete"></td>
+          <td>Phạm Hoàng Bách</td>
+          <td>0123456789</td>
+          <td>15:30 22/11/2021</td> 
+          <td>20$</td>
+          <td><a href="order_detail.html">Chi tiết</a></td>
+        </tr>
+        <tr class="order">
+          <td class="check"><input type="checkbox" id="order1" name="order1" value="complete"></td>
+          <td>Phạm Hoàng Bách</td>
+          <td>0123456789</td>
+          <td>15:30 22/11/2021</td> 
+          <td>20$</td>
+          <td><a href="order_detail.html">Chi tiết</a></td>
+        </tr>
+        <tr class="order">
+          <td class="check"><input type="checkbox" id="order1" name="order1" value="complete"></td>
+          <td>Phạm Hoàng Bách</td>
+          <td>0123456789</td>
+          <td>15:30 22/11/2021</td> 
+          <td>20$</td>
+          <td><a href="order_detail.html">Chi tiết</a></td>
+        </tr>
+        <tr class="order">
+          <td class="check"><input type="checkbox" id="order1" name="order1" value="complete"></td>
+          <td>Phạm Hoàng Bách</td>
+          <td>0123456789</td>
+          <td>15:30 22/11/2021</td> 
+          <td>20$</td>
+          <td><a href="order_detail.html">Chi tiết</a></td>
+        </tr>
+        <tr class="order">
+          <td class="check"><input type="checkbox" id="order1" name="order1" value="complete"></td>
+          <td>Phạm Hoàng Bách</td>
+          <td>0123456789</td>
+          <td>15:30 22/11/2021</td> 
+          <td>20$</td>
+          <td><a href="order_detail.html">Chi tiết</a></td>
+        </tr>
+        <tr class="order">
+          <td class="check"><input type="checkbox" id="order1" name="order1" value="complete"></td>
+          <td>Phạm Hoàng Bách</td>
+          <td>0123456789</td>
+          <td>15:30 22/11/2021</td> 
+          <td>20$</td>
+          <td><a href="order_detail.html">Chi tiết</a></td>
+        </tr>
+        <tr class="order">
+          <td class="check"><input type="checkbox" id="order1" name="order1" value="complete"></td>
+          <td>Phạm Hoàng Bách</td>
+          <td>0123456789</td>
+          <td>15:30 22/11/2021</td> 
+          <td>20$</td>
+          <td><a href="order_detail.html">Chi tiết</a></td>
+        </tr>
+        <tr class="order">
+          <td class="check"><input type="checkbox" id="order1" name="order1" value="complete"></td>
+          <td>Phạm Hoàng Bách</td>
+          <td>0123456789</td>
+          <td>15:30 22/11/2021</td> 
+          <td>20$</td>
+          <td><a href="order_detail.html">Chi tiết</a></td>
+        </tr>
+        <tr class="order">
+          <td class="check"><input type="checkbox" id="order1" name="order1" value="complete"></td>
+          <td>Phạm Hoàng Bách</td>
+          <td>0123456789</td>
+          <td>15:30 22/11/2021</td> 
+          <td>20$</td>
+          <td><a href="order_detail.html">Chi tiết</a></td>
+        </tr>
+        <tr class="order">
+          <td class="check"><input type="checkbox" id="order1" name="order1" value="complete"></td>
+          <td>Phạm Hoàng Bách</td>
+          <td>0123456789</td>
+          <td>15:30 22/11/2021</td> 
+          <td>20$</td>
+          <td><a href="order_detail.html">Chi tiết</a></td>
+        </tr>
+        <tr class="order">
+          <td class="check"><input type="checkbox" id="order1" name="order1" value="complete"></td>
+          <td>Phạm Hoàng Bách</td>
+          <td>0123456789</td>
+          <td>15:30 22/11/2021</td> 
+          <td>20$</td>
+          <td><a href="order_detail.html">Chi tiết</a></td>
+        </tr>
+        <tr class="order">
+          <td class="check"><input type="checkbox" id="order1" name="order1" value="complete"></td>
+          <td>Phạm Hoàng Bách</td>
+          <td>0123456789</td>
+          <td>15:30 22/11/2021</td> 
+          <td>20$</td>
+          <td><a href="order_detail.html">Chi tiết</a></td>
+        </tr>
+      </table>
+
+      <div class="page">
+        <ul>
+          <li><a href="#"><i class="fa-solid fa-arrow-left"></i></a></li>
+          <li><a href="#" class="current_page">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li><a href="#">5</a></li>
+          <li><a href="#">></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

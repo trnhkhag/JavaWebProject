@@ -1,0 +1,173 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    padding: 1%;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100px 50px 180px 2fr;
+    grid-template-areas:
+    "header header"
+    "setting setting"
+    "order customer"
+    "product product";
+    grid-column-gap: 1%;
+    grid-row-gap: 0.5%;
+}
+
+.header {
+    grid-area: header;
+    border: 2px solid red;
+}
+
+.order {
+    grid-area: order;
+    margin-left: 20%;
+}
+
+.customer {
+    grid-area: customer;
+    margin-right: 20%;
+}
+
+.product {
+    grid-area: product;
+}
+
+.order, .customer {
+    overflow-y: auto;
+}
+
+.order table, .customer table {
+    border-collapse: collapse;
+    width: 100%;
+    height: auto;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-top: none;
+}
+
+.order .title, .customer .title {
+    font-size: 1.2em;
+    background-color: #ffad33;
+    height: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: none;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.order table tr:nth-child(even), .customer table tr:nth-child(even) {
+    background-color: rgba(255, 222, 173, 0.2);
+}
+
+.order table th, .customer table th {
+    text-align: center;
+    padding: 8px;
+}
+
+.order table td, .customer table td {
+    text-align: left;
+    padding: 8px;
+}
+
+.status {
+    background-color: rgba(0, 255, 0, 0.1);
+    color: green;
+    padding: 5px;
+}
+
+.total {
+    background-color: rgba(255, 255, 0, 0.1);
+    color: orange;
+    padding: 5px;
+}
+
+.product {
+    margin: 0 10%;
+    margin-bottom: 200px;
+}
+
+.product table {
+    border-collapse: collapse;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    border: 2px solid rgba(0, 0, 0, 0.2) !important;
+    border-bottom: none;
+}
+
+.product_img {
+    display: block;
+    margin: 0 auto;
+    width: 160px;
+    height: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.product table thead {
+    background-color: #ffad33;
+}
+
+.product table thead tr th {
+    padding: 15px 10px;
+    font-weight: 900;
+    font-size: 20px;
+}
+
+.product table tr td {
+    text-align: center !important;
+    vertical-align: middle;
+    padding: 40px 10px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2) !important;
+}
+
+.price, .quantity {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.setting {
+   grid-area: setting;
+   margin: 0 10%;
+   display: flex;
+   justify-content: end; 
+}
+
+.setting div {
+    width: 195px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.setting button {
+    width: auto;
+    height: 36px;
+    padding: 0 10px;
+    background-color: #ffad33;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.setting button:hover {
+    background-color: #ffdead;
+}
