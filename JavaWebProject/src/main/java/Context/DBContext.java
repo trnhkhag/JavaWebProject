@@ -6,6 +6,7 @@ public class DBContext {
 	private static String url = "jdbc:mysql://localhost:3306/webprojectdb";
 	private static String username = "root";
 	private static String password = "";
+	
 	public static Connection getConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
