@@ -33,6 +33,8 @@
 			<link rel="stylesheet" href="css/icomoon.css">
 			<link rel="stylesheet" href="css/style.css">
 			<link rel="stylesheet" href="css/mystyle.css">
+			<script src="js/sweetalert.all.min.js"></script>
+			<script src="js/cart.js"></script>
 		</head>
 
 		<body class="goto-here">
@@ -44,7 +46,7 @@
 					<div class="row no-gutters slider-text align-items-center justify-content-center">
 						<div class="col-md-9 ftco-animate text-center">
 							<p class="breadcrumbs">
-								<span class="mr-2"><a href="index.html">Home</a></span> <span>Products</span>
+								<span class="mr-2"><a href="Home">Home</a></span> <span>Products</span>
 							</p>
 							<h1 class="mb-0 bread">Products</h1>
 						</div>
@@ -119,7 +121,7 @@
 												<a href="${pageContext.request.contextPath}/ProductDetail?pid=${p.id}"
 													class="add-to-cart d-flex justify-content-center align-items-center text-center">
 													<span><i class="ion-ios-menu"></i></span>
-												</a> <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1" onclick="addToCart(${p.id}, 1)">
+												</a> <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1" onclick="event.preventDefault(); addToCart(${p.id}, ${p.quantity})">
 													<span><i class="ion-ios-cart btn-buynow"></i></span>
 												</a> <a href="#" class="heart d-flex justify-content-center align-items-center ">
 													<span><i class="ion-ios-heart"></i></span>
@@ -199,8 +201,6 @@
 			<script src="js/google-map.js"></script>
 			<script src="js/sweetalert.all.min.js"></script>
 			<script src="js/main.js"></script>
-			<script src="js/cart.js"></script>
-			<script src="js/cart.js"></script>
 		</body>
 
 		</html>

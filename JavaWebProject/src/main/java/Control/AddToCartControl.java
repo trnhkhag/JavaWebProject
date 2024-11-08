@@ -1,6 +1,7 @@
 package Control;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,57 +14,55 @@ import javax.servlet.http.HttpSession;
 import DAO.DAOProduct;
 import Entity.Product;
 
-/**
- * Servlet implementation class AddToCartControl
- */
 @WebServlet("/AddToCart")
 public class AddToCartControl extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    private static final long serialVersionUID = 1L;
+
     public AddToCartControl() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int pid = Integer.parseInt(request.getParameter("productId"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        DAOProduct pdao = new DAOProduct();
+        HttpSession session = request.getSession();
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		int pid = Integer.parseInt(request.getParameter("productId"));
-		DAOProduct pdao = new DAOProduct();
-		HttpSession session = request.getSession();
-		@SuppressWarnings("unchecked")
-		List<Product> cart = (List<Product>) session.getAttribute("cart");
-		Product p = pdao.getProductById(pid);
-		if (cart.contains(p)) {
-			for (Product product : cart) {
-				if (product.equals(p)) {
-					product.setQuantity(product.getQuantity() + 1);
-				}
-			}
-		}
-		else {
-			p.setQuantity(Integer.parseInt(request.getParameter("quantity")));
-			cart.add(p);
-		}
-		double total = 0;
-		for (Product product : cart) {
-			total += product.getPrice() * product.getQuantity();
-		}
-		session.setAttribute("total", total);
-		session.setAttribute("cart", cart);
-	}
+        // Retrieve the cart from the session or create a new one
+        @SuppressWarnings("unchecked")
+        List<Product> cart = (List<Product>) session.getAttribute("cart");
+        if (cart == null) {
+            cart = new ArrayList<>();
+            session.setAttribute("cart", cart);
+        }
 
+        Product p = pdao.getProductById(pid);
+        boolean found = false;
+
+        // Check if the product already exists in the cart and update quantity if it does
+        for (Product product : cart) {
+            if (product.equals(p)) {
+                product.setQuantity(product.getQuantity() + quantity);
+                found = true;
+                break;
+            }
+        }
+
+        // If product is not in the cart, add it with the specified quantity
+        if (!found) {
+            p.setQuantity(quantity);
+            cart.add(p);
+        }
+
+        // Calculate total
+        double total = 0;
+        for (Product product : cart) {
+            total += product.getPrice() * product.getQuantity();
+        }
+        session.setAttribute("total", total);
+
+        // Send a response message
+        response.setContentType("text/plain");
+        response.getWriter().write("Product added to cart successfully!");
+    }
 }

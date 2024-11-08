@@ -11,6 +11,7 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/register.js"></script>
 
     <!--Bootsrap 4 CDN-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -45,14 +46,14 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Email" name="email">
+                            <input type="text" class="form-control" placeholder="Email" id="email" name="email">
                         </div>
 
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-phone"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Phone Number" name="phone">
+                            <input type="text" class="form-control" placeholder="Phone Number" id="phone" name="phone">
                         </div>
 
                         <div class="input-group form-group">
@@ -66,12 +67,12 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-                            <input type="password" class="form-control" placeholder="Confirm Password" name="confpass">
+                            <input type="password" class="form-control" placeholder="Confirm Password" id="confpass" name="confpass">
                         </div>
 
                         <div class="form-group action">
                             <input type="reset" value="Reset" class="btn login_btn">
-                            <input type="submit" value="Register" class="btn float-right register_btn">
+                            <input type="submit" value="Register" class="btn float-right register_btn" id="submit">
                         </div>
                     
                     </form>

@@ -23,8 +23,8 @@
 							<a class="dropdown-item" href="Shop?cid=4&page=1">Unisex Watches</a>
 						</div>
 					</li>
-					<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+					<li class="nav-item"><a href="About" class="nav-link">About</a></li>
+					<li class="nav-item"><a href="Contact" class="nav-link">Contact</a></li>
 				</ul>
 
 			</div>

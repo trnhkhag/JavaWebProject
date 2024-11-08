@@ -67,7 +67,7 @@ public class AddProductControl extends HttpServlet {
 //	}
 
 	public File getFolderUpload() {
-		File folderUpload = new File("C:\\Users\\trnhk\\eclipse-workspace\\JavaWebProject\\src\\main\\webapp\\images");
+		File folderUpload = new File("..\\..\\webapp\\images");
 		if (!folderUpload.exists()) {
 			folderUpload.mkdirs();
 		}

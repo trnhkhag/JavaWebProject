@@ -34,6 +34,7 @@
 	<link rel="stylesheet" href="css/icomoon.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/mystyle.css">
+	<script src="js/cart.js"></script>
 </head>
 
 <body class="goto-here">
@@ -84,7 +85,7 @@
 								</button>
 							</span>
 							<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1"
-								min="1" max="100">
+								min="1" max="100" readonly="readonly">
 							<span class="input-group-btn ml-2">
 								<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
 									<i class="ion-ios-add"></i>
@@ -96,7 +97,7 @@
 
 						</div>
 					</div>
-					<p><a href="#" class="buy-now btn btn-black py-3 px-5" id="add_to_cart" onclick="addToCart(${p.id}, 1)">Add to Cart</a></p>
+					<p><a href="#" class="buy-now btn btn-black py-3 px-5" id="add_to_cart" onclick="event.preventDefault(); addToCart(${p.id}, parseInt(document.getElementById('quantity').value))">Add to Cart</a></p>
 				</div>
 			</div>
 		</div>
@@ -196,7 +197,6 @@
 	<script src="js/google-map.js"></script>
 	<script src="js/sweetalert.all.min.js"></script>
 	<script src="js/main.js"></script>
-	<script src="js/cart.js"></script>
 
 	<script>
 		$(document).ready(function () {

@@ -304,6 +304,7 @@ public class DAOProduct {
 	
 	public List<Product> searchProduct(String input, int page) {
 		try {
+			input = input.trim();
 			List<Product> plist = new ArrayList<>();
 			Connection conn = DBContext.getConnection();
 			String sql = "SELECT * FROM sanpham WHERE TenSP LIKE '%" + input + "%' LIMIT ?,?";
