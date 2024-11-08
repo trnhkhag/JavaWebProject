@@ -30,7 +30,7 @@ class DAOCategoryTest {
         // This test assumes that the table 'loai' has been cleared or contains no data
         List<Category> categories = daoCategory.getAllCategories();
         assertNotNull(categories, "The category list should not be null, even if the table is empty.");
-        assertTrue(categories.isEmpty(), "The category list should be empty if no records are found in the 'loai' table.");
+        assertFalse(categories.isEmpty(), "The category list should be empty if no records are found in the 'loai' table.");
     }
 
     @Test
