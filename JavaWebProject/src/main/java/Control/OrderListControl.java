@@ -37,7 +37,7 @@ public class OrderListControl extends HttpServlet {
 		DAOadmin dao=new DAOadmin();
 		List<OrderList> info=dao.getinfo();
 		
-		String date=request.getParameter("date");
+		String date = request.getParameter("date");
 		
 		request.setAttribute("in4", info);
 

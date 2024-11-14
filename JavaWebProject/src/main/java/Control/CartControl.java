@@ -1,11 +1,16 @@
 package Control;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import Entity.Product;
 
 /**
  * Servlet implementation class CartControl
@@ -27,6 +32,19 @@ public class CartControl extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+        @SuppressWarnings("unchecked")
+        List<Product> cart = (List<Product>) session.getAttribute("cart");
+		
+		// Calculate the new total
+        double total = 0;
+        if (cart != null) {
+        	for (Product product : cart) {
+                total += product.getPrice() * product.getQuantity();
+            }
+        }
+        session.setAttribute("total", total);
+		
 		this.getServletContext().getRequestDispatcher("/cart.jsp").forward(request, response);
 	}
 

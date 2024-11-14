@@ -88,7 +88,7 @@
 												min="1" max="100" onchange="changeQuantity(${p.id}, this)">
 										</div>
 										<div class="cart_product_remove">
-											<a href="#" onclick="deleteFromCart(${p.id})"><span class="ion-ios-close"></span></a>
+											<a href="#" onclick="event.preventDefault(); deleteFromCart(${p.id})"><span class="ion-ios-close"></span></a>
 										</div>
 									</td>
 								</tr>
@@ -196,6 +196,7 @@
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 	<script src="js/google-map.js"></script>
 	<script src="js/main.js"></script>
+	<script src="js/sweetalert.all.min.js"></script>
 	<script src="js/cart.js"></script>
 	<script>
 		$(document).ready(function() {

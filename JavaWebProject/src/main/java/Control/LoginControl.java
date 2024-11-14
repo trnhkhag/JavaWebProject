@@ -45,44 +45,54 @@ public class LoginControl extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		boolean hasError = false;
-		String errorString = null;
-		if (username == null || password == null || username.length() == 0 || password.length() == 0) {
-			hasError = true;
-			errorString = "Require username and password";
-		}
-		else {
-			DAOUser dao = new DAOUser();
-			if (!dao.check(username, password)) {
-				hasError = true;
-				errorString = "Invalid username or password";
-			}
-		}
-		
-		if (hasError) {
-			request.setAttribute("username", username);
-			request.setAttribute("password", password);
-			request.setAttribute("errorString", errorString);
-			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/login1.jsp");
-			dispatcher.forward(request, response);
-		}
-		else {
-			DAOUser udao = new DAOUser();
-			User user = udao.getUser(username, password);
-			HttpSession session = request.getSession();
-			session.setAttribute("user", username);
-			session.setAttribute("pass", password);
-			session.setAttribute("role", user.getRole());
-			System.out.println(user.getRole());
-			if (user.getRole().equals("Admin")) {
-				response.sendRedirect(request.getContextPath() + "/admin_index.html");
-			}
-			else {
-				session.setAttribute("cart", new ArrayList<Product>());
-				response.sendRedirect(request.getContextPath() + "/Home");
-			}
-		}
+        String password = request.getParameter("password");
+        boolean hasError = false;
+        String errorString = null;
+
+        // Check if username is empty
+        if (username == null || username.isEmpty()) {
+            hasError = true;
+            errorString = "Username cannot be empty.";
+        }
+        // Check if password is empty
+        else if (password == null || password.isEmpty()) {
+            hasError = true;
+            errorString = "Password cannot be empty.";
+        }
+        // Check if password length is less than 6 characters
+        else if (password.length() < 6) {
+            hasError = true;
+            errorString = "Password must be at least 6 characters long.";
+        } else {
+            // Validate username and password against the database
+            DAOUser dao = new DAOUser();
+            if (!dao.check(username, password)) {
+                hasError = true;
+                errorString = "Invalid username or password.";
+            }
+        }
+
+        if (hasError) {
+            request.setAttribute("username", username);
+            request.setAttribute("errorString", errorString);
+            RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/login1.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            // Login successful, set session attributes and redirect accordingly
+            DAOUser udao = new DAOUser();
+            User user = udao.getUser(username, password);
+            HttpSession session = request.getSession();
+            session.setAttribute("user", username);
+            session.setAttribute("pass", password);
+            session.setAttribute("role", user.getRole());
+            
+            if ("Admin".equals(user.getRole())) {
+                response.sendRedirect(request.getContextPath() + "/admin_index.html");
+            } else {
+                session.setAttribute("cart", new ArrayList<Product>());
+                response.sendRedirect(request.getContextPath() + "/Home");
+            }
+        }
 	}
 
 }

@@ -33,8 +33,10 @@
 			<link rel="stylesheet" href="css/icomoon.css">
 			<link rel="stylesheet" href="css/style.css">
 			<link rel="stylesheet" href="css/mystyle.css">
+			<link rel="stylesheet" href="css/filter.css">
 			<script src="js/sweetalert.all.min.js"></script>
 			<script src="js/cart.js"></script>
+			<script src="js/filter.js"></script>
 		</head>
 
 		<body class="goto-here">
@@ -68,7 +70,7 @@
 						</div>
 					</div>
 					<div class="filter-container">
-						<form action="Shop" name="filter-form" method="get">
+						<form action="Shop" name="filter-form" method="get" onsubmit="return validateFilter()">
 							<div style="display: flex; justify-content: center;">
 								<div style="margin: 0 30px">
 									<h4>Category</h4>
@@ -121,7 +123,7 @@
 												<a href="${pageContext.request.contextPath}/ProductDetail?pid=${p.id}"
 													class="add-to-cart d-flex justify-content-center align-items-center text-center">
 													<span><i class="ion-ios-menu"></i></span>
-												</a> <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1" onclick="event.preventDefault(); addToCart(${p.id}, ${p.quantity})">
+												</a> <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1" onclick="event.preventDefault(); addToCart(${p.id}, 1)">
 													<span><i class="ion-ios-cart btn-buynow"></i></span>
 												</a> <a href="#" class="heart d-flex justify-content-center align-items-center ">
 													<span><i class="ion-ios-heart"></i></span>
@@ -143,7 +145,7 @@
 												<li class="active"><a href="#">${i}</a></li>
 											</c:when>
 											<c:otherwise>
-												<li><a href="Shop?page=${i}">${i}</a></li>
+												<li><a href="Shop?page=${i}${queryString}">${i}</a></li>
 											</c:otherwise>
 										</c:choose>
 									</c:forEach>

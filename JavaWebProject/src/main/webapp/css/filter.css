@@ -1,0 +1,109 @@
+/* Style for the filter container */
+.filter-container {
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+/* Style for the filter form */
+.filter-container form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+/* Each filter box (Category, Brand, Price) */
+.filter-container > div {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 300px;
+    margin: 10px;
+}
+
+/* Title for filter sections (Category, Brand, etc.) */
+.filter-container h4 {
+    font-size: 24px; /* Larger font size for section titles (Category, Brand) */
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Style for checkbox container, placing label and checkbox on the same line */
+.filter-container .checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px; /* Slightly larger margin */
+}
+
+/* Style for checkbox inputs inside filter section */
+.filter-container input[type="checkbox"] {
+    margin-right: 15px;
+    accent-color: #F96D00; /* Change the checkbox color to match your theme */
+    transform: scale(1.5); /* Scale the checkbox to make it larger */
+    cursor: pointer;
+}
+
+/* Label for the checkboxes (Larger font size for categories and brands) */
+.filter-container label {
+    font-size: 18px;  /* Larger font size for labels */
+    color: #555;
+    cursor: pointer;
+    margin-right: 20px; /* Space between checkboxes and labels */
+    display: inline-block; /* Ensure the label aligns well with the checkbox */
+}
+
+/* Price range inputs */
+.filter-container input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    margin-bottom: 15px; /* Slightly larger margin for spacing */
+    font-size: 16px; /* Larger font size for number inputs */
+    background-color: #fff;
+}
+
+/* Submit button */
+.filter-container input[type="submit"] {
+    background-color: #ffad33;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px; /* Larger padding for a more prominent button */
+    font-size: 16px; /* Larger font size */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Submit button hover effect */
+.filter-container input[type="submit"]:hover {
+    background-color: #e65c00;
+}
+
+/* Media Query for Responsive Design */
+@media (max-width: 768px) {
+    .filter-container form {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .filter-container > div {
+        width: 80%; /* Adjust width for mobile */
+        max-width: 90%;
+    }
+
+    .filter-container label {
+        font-size: 20px; /* Larger label font size for smaller screens */
+    }
+
+    .filter-container input[type="submit"] {
+        font-size: 18px; /* Larger submit button font size for mobile */
+    }
+}

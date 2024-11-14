@@ -34,6 +34,8 @@
 	<link rel="stylesheet" href="css/icomoon.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/mystyle.css">
+	<script src="js/sweetalert.all.min.js"></script>
+	<script src="js/checkout.js"></script>
 </head>
 
 <body class="goto-here">
@@ -56,7 +58,7 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-xl-7 ftco-animate">
-					<form method="post" action="CreateOrder" class="billing-form" id="checkout-form">
+					<form method="post" action="CreateOrder" class="billing-form" id="checkout-form" onsubmit="return validateUserInfo()">
 						<h3 class="mb-4 billing-heading">Billing Address</h3>
 						<div class="row align-items-end">
 							<div class="col-md-12">

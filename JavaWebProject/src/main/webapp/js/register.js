@@ -15,31 +15,56 @@ function validate() {
 
     // Validate username (non-empty)
     if (username === "") {
-        alert("Username is required.");
+        Swal.fire({
+            title: 'Error!',
+            text: 'Username is required.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
         return false;
     }
 
     // Validate email format
     if (!emailPattern.test(email)) {
-        alert("Please enter a valid email address.");
+        Swal.fire({
+            title: 'Error!',
+            text: 'Please enter a valid email address.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
         return false;
     }
 
     // Validate phone number format
     if (!phonePattern.test(phone)) {
-        alert("Please enter a valid 10-digit phone number.");
+        Swal.fire({
+            title: 'Error!',
+            text: 'Please enter a valid 10-digit phone number.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
         return false;
     }
 
     // Validate password length
     if (password.length < 6) {
-        alert("Password must be at least 6 characters long.");
+        Swal.fire({
+            title: 'Error!',
+            text: 'Password must be at least 6 characters long.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
         return false;
     }
 
     // Validate confirm password matches password
     if (password !== confirmPassword) {
-        alert("Passwords do not match.");
+        Swal.fire({
+            title: 'Error!',
+            text: 'Passwords do not match.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
         return false;
     }
 

@@ -1,6 +1,7 @@
 package Control;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.List;
 
@@ -42,21 +43,43 @@ public class DeleteFromCartControl extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int pid = Integer.parseInt(request.getParameter("productId"));
-		HttpSession session = request.getSession();
-		@SuppressWarnings("unchecked")
-		List<Product> cart = (List<Product>) session.getAttribute("cart");
-		Iterator<Product> itr = cart.iterator();
-		while (itr.hasNext()) {
-			Product p = (Product) itr.next();
-			if (p.getId() == pid) {
-				itr.remove();
-			}
-		}
-		double total = 0;
-		for (Product product : cart) {
-			total += product.getPrice() * product.getQuantity();
-		}
-		session.setAttribute("total", total);
+        HttpSession session = request.getSession();
+        @SuppressWarnings("unchecked")
+        List<Product> cart = (List<Product>) session.getAttribute("cart");
+
+        boolean productRemoved = false;
+        if (cart != null) {
+            Iterator<Product> itr = cart.iterator();
+            while (itr.hasNext()) {
+                Product p = itr.next();
+                if (p.getId() == pid) {
+                    itr.remove();
+                    productRemoved = true;
+                    break;
+                }
+            }
+        }
+
+        // Recalculate total price if product was removed
+        double total = 0;
+        if (productRemoved) {
+            for (Product product : cart) {
+                total += product.getPrice() * product.getQuantity();
+            }
+            session.setAttribute("total", total);
+        }
+
+        // Set response content type to plain text and output result
+        response.setContentType("text/plain");
+        PrintWriter out = response.getWriter();
+
+        if (productRemoved) {
+            out.print("Product removed successfully.");
+        } else {
+            out.print("Product not found in cart.");
+        }
+
+        out.flush();
 	}
 
 }

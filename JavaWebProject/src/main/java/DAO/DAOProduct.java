@@ -65,76 +65,78 @@ public class DAOProduct {
 	}
 	
 	public List<Product> getProductByFilter(List<String> categories, List<String> brands, double minPrice, double maxPrice, int page) {
-		try {
-			List<Product> plist = new ArrayList<>();
-			Connection conn = DBContext.getConnection();
-			String sql = "SELECT * FROM sanpham";
-			int i = 0;
-			if (categories.size() > 0 || brands.size() > 0 || minPrice > 0 || maxPrice > 0) {
-				sql += " WHERE ";
-			}
-			if (categories.size() > 0) {
-				sql += "MaLoai in (";
-				for (i = 0; i < categories.size() - 1; i++) {
-					 sql += categories.get(i) + ", ";
-				}
-				sql += categories.get(i) + ")";
-				if (brands.size() > 0) {
-					sql += " AND ";
-				}
-				else if (minPrice > 0) {
-					sql += " AND ";
-				}
-				else if (maxPrice > 0) {
-					sql += " AND ";
-				}
-			}
-			
-			if (brands.size() > 0) {
-				sql += "Hang in (";
-				for (i = 0; i < brands.size() - 1; i++) {
-					sql += "'" + brands.get(i) + "', ";
-				}
-				sql += "'" + brands.get(i) + "')";
-				if (minPrice > 0) {
-					sql += " AND ";
-				}
-				else if (maxPrice > 0) {
-					sql += " AND ";
-				}
-			}
-			if (minPrice > 0) {
-				sql += "Gia >= " + minPrice;
-				if (maxPrice > 0) {
-					sql += " AND ";
-				}
-			}
-			if (maxPrice > 0) {
-				sql += "Gia <= " + maxPrice;
-			}
-			PreparedStatement stmt = conn.prepareStatement(sql + " LIMIT ?,?");
-			stmt.setInt(1, limit * (page - 1));
-			stmt.setInt(2, limit);
-			ResultSet rs = stmt.executeQuery();
-			while (rs.next()) {
-				plist.add(new Product(rs.getInt("MaSP"), 
-							          rs.getString("TenSP"), 
-							          rs.getDouble("Gia"),
-							          rs.getString("Hinh"), 
-							          rs.getInt("LuongTon"), 
-							          rs.getInt("TrangThai"), 
-							          rs.getString("Hang"), 
-							          rs.getString("MoTa"), 
-							          rs.getInt("MaLoai")));
-			}
-			stmt.close();
-			conn.close();
-			return plist;
-		} catch (Exception ex) {
-			// TODO: handle exception
-			System.out.println("ERROR: " + ex.getMessage());
-		}
-		return null;
+	    List<Product> plist = new ArrayList<>();
+	    StringBuilder sql = new StringBuilder("SELECT * FROM sanpham WHERE 1=1");
+
+	    List<Object> parameters = new ArrayList<>();
+
+	    // Add category filter if provided
+	    if (categories != null && !categories.isEmpty()) {
+	        sql.append(" AND MaLoai IN (");
+	        String placeholders = String.join(",", Collections.nCopies(categories.size(), "?"));
+	        sql.append(placeholders).append(")");
+	        parameters.addAll(categories);
+	    }
+
+	    // Add brand filter if provided
+	    if (brands != null && !brands.isEmpty()) {
+	        sql.append(" AND Hang IN (");
+	        String placeholders = String.join(",", Collections.nCopies(brands.size(), "?"));
+	        sql.append(placeholders).append(")");
+	        parameters.addAll(brands);
+	    }
+
+	    // Add price range filters if provided
+	    if (minPrice > 0) {
+	        sql.append(" AND Gia >= ?");
+	        parameters.add(minPrice);
+	    }
+	    if (maxPrice > 0) {
+	        sql.append(" AND Gia <= ?");
+	        parameters.add(maxPrice);
+	    }
+
+	    // Pagination logic
+	    int limit = 8;  // Limit per page
+	    int offset = limit * (page - 1);  // Calculate offset
+
+	    sql.append(" LIMIT ?, ?");
+	    parameters.add(offset);  // Offset for pagination
+	    parameters.add(limit);    // Limit for pagination
+
+	    try (Connection conn = DBContext.getConnection();
+	         PreparedStatement stmt = conn.prepareStatement(sql.toString())) {
+
+	        // Set parameters for PreparedStatement
+	        for (int i = 0; i < parameters.size(); i++) {
+	            Object param = parameters.get(i);
+	            if (param instanceof Integer) {
+	                stmt.setInt(i + 1, (Integer) param);
+	            } else if (param instanceof Double) {
+	                stmt.setDouble(i + 1, (Double) param);
+	            } else if (param instanceof String) {
+	                stmt.setString(i + 1, (String) param);
+	            }
+	        }
+
+	        ResultSet rs = stmt.executeQuery();
+	        while (rs.next()) {
+	            plist.add(new Product(
+	                rs.getInt("MaSP"),
+	                rs.getString("TenSP"),
+	                rs.getDouble("Gia"),
+	                rs.getString("Hinh"),
+	                rs.getInt("LuongTon"),
+	                rs.getInt("TrangThai"),
+	                rs.getString("Hang"),
+	                rs.getString("MoTa"),
+	                rs.getInt("MaLoai")
+	            ));
+	        }
+	    } catch (Exception ex) {
+	        System.out.println("ERROR: " + ex.getMessage());
+	    }
+	    return plist;
 	}
 	
 	public Product getProduct(String id) {
@@ -438,6 +440,99 @@ public class DAOProduct {
 			System.out.println("ERROR: " + ex.getMessage());
 		}
 		return false;
+	}
+	
+	public int getNoOfFilteredProducts(List<String> categories, List<String> brands, double minPrice, double maxPrice) {
+	    StringBuilder sql = new StringBuilder("SELECT COUNT(*) FROM sanpham WHERE 1=1");
+
+	    // Add category filter if present
+	    if (!categories.isEmpty()) {
+	        sql.append(" AND MaLoai IN (");
+	        String placeholders = String.join(",", Collections.nCopies(categories.size(), "?"));
+	        sql.append(placeholders).append(")");
+	    }
+
+	    // Add brand filter if present
+	    if (!brands.isEmpty()) {
+	        sql.append(" AND Hang IN (");
+	        String placeholders = String.join(",", Collections.nCopies(brands.size(), "?"));
+	        sql.append(placeholders).append(")");
+	    }
+
+	    // Add price range filters if provided
+	    if (minPrice > 0) {
+	        sql.append(" AND Gia >= ?");
+	    }
+	    if (maxPrice > 0) {
+	        sql.append(" AND Gia <= ?");
+	    }
+
+	    // Execute the query and return the result
+	    try (Connection conn = DBContext.getConnection();
+	         PreparedStatement stmt = conn.prepareStatement(sql.toString())) {
+
+	        int index = 1;
+	        // Set parameters in PreparedStatement
+	        for (String category : categories) {
+	            stmt.setString(index++, category);
+	        }
+	        for (String brand : brands) {
+	            stmt.setString(index++, brand);
+	        }
+	        if (minPrice > 0) {
+	            stmt.setDouble(index++, minPrice);
+	        }
+	        if (maxPrice > 0) {
+	            stmt.setDouble(index++, maxPrice);
+	        }
+
+	        ResultSet rs = stmt.executeQuery();
+	        if (rs.next()) {
+	            return rs.getInt(1); // Return the count
+	        }
+	    } catch (Exception ex) {
+	        System.out.println("ERROR: " + ex.getMessage());
+	    }
+	    return 0;
+	}
+	
+	public int getNoOfProductByFilter(List<String> categories, List<String> brands, double minPrice, double maxPrice) {
+	    int count = 0;
+	    StringBuilder sql = new StringBuilder("SELECT COUNT(*) FROM sanpham WHERE 1=1");
+
+	    // Add filter conditions like categories, brands, min/max price
+	    if (categories != null && !categories.isEmpty()) {
+	        sql.append(" AND MaLoai IN (");
+	        String placeholders = String.join(",", Collections.nCopies(categories.size(), "?"));
+	        sql.append(placeholders).append(")");
+	    }
+
+	    if (brands != null && !brands.isEmpty()) {
+	        sql.append(" AND Hang IN (");
+	        String placeholders = String.join(",", Collections.nCopies(brands.size(), "?"));
+	        sql.append(placeholders).append(")");
+	    }
+
+	    if (minPrice > 0) {
+	        sql.append(" AND Gia >= ?");
+	    }
+	    if (maxPrice > 0) {
+	        sql.append(" AND Gia <= ?");
+	    }
+
+	    try (Connection conn = DBContext.getConnection();
+	         PreparedStatement stmt = conn.prepareStatement(sql.toString())) {
+	        // Add parameters to PreparedStatement here
+	        // Similar to how you add parameters in getProductByFilter method
+
+	        ResultSet rs = stmt.executeQuery();
+	        if (rs.next()) {
+	            count = rs.getInt(1);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return count;
 	}
 	
 	public static void main(String[] args) {

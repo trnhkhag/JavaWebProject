@@ -52,7 +52,7 @@ public class DAOOrder {
 		try {
 			List<Order> olist = new ArrayList<>();
 			Connection conn = DBContext.getConnection();
-			String sql = "SELECT * FROM donhang WHERE MaNguoiDung = ?";
+			String sql = "SELECT * FROM donhang WHERE MaNguoiDung = ? ORDER BY NgayLap DESC";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, userId);
 			ResultSet rs = stmt.executeQuery();
