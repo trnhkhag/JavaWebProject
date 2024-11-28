@@ -48,6 +48,14 @@ public class AddToCartControl extends HttpServlet {
             response.getWriter().write("Product not found.");
             return;
         }
+        
+        // Check if quantity is valid
+        if (quantity <= 0) {
+        	response.setContentType("text/plain");
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.getWriter().write("Quantity must be greater than zero");
+            return;
+        }
 
         // Check if requested quantity exceeds available stock
         int availableStock = p.getStock();  // Assuming getStock() method exists in Product class

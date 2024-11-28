@@ -1,5 +1,4 @@
 function addToCart(id, quantity) {
-    console.log("Add to cart");
     $.ajax({
         type: "POST",
         url: "AddToCart",
@@ -67,8 +66,6 @@ function changeQuantity(id, quantityInput) {
             quantity: quantityInput.value
         },
         success: function (response) {
-            console.log("Changed quantity successfully");
-            // Optionally add SweetAlert notification for feedback
             Swal.fire({
                 title: 'Success!',
                 text: 'Quantity updated successfully.',
@@ -87,6 +84,11 @@ function changeQuantity(id, quantityInput) {
                 text: xhr.responseText || 'Failed to change quantity. Please try again.',
                 icon: 'error',
                 confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Reload the page after error confirmation
+                    location.reload();
+                }
             });
         }
     });
