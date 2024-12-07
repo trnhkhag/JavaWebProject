@@ -49,7 +49,7 @@
 						</div>
 
 						<div class="action">
-							<button type="button" value="Cancel" onclick="window.location.assign('index.html');"
+							<button type="button" value="Cancel" onclick="window.location.assign('Home');"
 								class="btn float-right login_btn">Cancel</button>
 							<button type="submit" value="Login" class="btn float-right login_btn">Login</button>
 						</div>

@@ -35,11 +35,17 @@ public class OrderHistoryControl extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		String username = (String) session.getAttribute("user");
+		if (username == null) {
+            response.sendRedirect("Login");
+            return;
+        }
+		
 		DAOOrder odao = new DAOOrder();
 		DAOUser udao = new DAOUser();
 		DAOOrderDetail oddao = new DAOOrderDetail();
-		HttpSession session = request.getSession();
-		String username = (String) session.getAttribute("user");
+		
 		User currentUser = udao.getUserByUsername(username);
 		int userId = currentUser.getId();
 		List<Order> olist = odao.getAllOrders(userId);

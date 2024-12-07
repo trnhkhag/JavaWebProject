@@ -55,10 +55,26 @@ public class CreateOrderControl extends HttpServlet {
 	    String address = request.getParameter("address");
 	    String phone = request.getParameter("phone");
 	    String email = request.getParameter("email");
+	    String coupon = request.getParameter("coupon");
 
 	    HttpSession session = request.getSession();
 	    String username = (String) session.getAttribute("user");
 	    double total = (Double) session.getAttribute("total");
+	    switch (coupon) {
+			case "FREESHIP": {
+				total -= 2.0;
+				break;
+			}
+			case "DISCOUNT100": {
+				total -= 100.0;
+				break;
+			}
+			case "DISCOUNT10P": {
+				double subtotal = total - 2.0;
+				total -= (subtotal * 0.1);
+				break;
+			}	
+		}
 
 	    @SuppressWarnings("unchecked")
 	    List<Product> cart = (List<Product>) session.getAttribute("cart");

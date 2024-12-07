@@ -73,7 +73,7 @@
 									<td class="product-remove"><input type="checkbox" id="buy"
 										name="watch01" value="buy"></td>
 
-									<td class="image-prod">
+									<td class="image-prod" onclick="window.location.href='${pageContext.request.contextPath}/ProductDetail?pid=${p.id}';">
 										<div class="img"
 											style="background-image: url(${p.image});"></div>
 									</td>
@@ -131,10 +131,10 @@
 				<div class="cart-total mb-3">
 					<h2 class="text-center">Cart Totals</h2>
 					<p class="d-flex">
-						<span>Subtotal</span> <span>${sessionScope.total}$</span>
+						<span>Subtotal</span> <span>${sessionScope.subtotal}$</span>
 					</p>
 					<p class="d-flex">
-						<span>Shipping</span> <span>0$</span>
+						<span>Shipping</span> <span>${sessionScope.shipping}$</span>
 					</p>
 					<p class="d-flex">
 						<span>Discount</span> <span>0$</span>

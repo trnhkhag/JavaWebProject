@@ -35,6 +35,7 @@
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/mystyle.css">
 	<script src="js/sweetalert.all.min.js"></script>
+	<script src="js/coupon.js"></script>
 	<script src="js/checkout.js"></script>
 </head>
 
@@ -85,15 +86,22 @@
 									<input name="email" type="text" class="form-control" placeholder="john@example.com" value="${currentUser.email}">
 								</div>
 							</div>
-							<div class="col-md-12">
+							<!-- <div class="col-md-12">
 								<div class="form-group">
 									<label for="note">Note</label>
 									<textarea name="note" class="form-control note" placeholder=""></textarea>
 								</div>
-							</div>
-							<div class="w-100"></div>
+							</div> -->
 							<div class="col-md-12">
-								<a href="#">Create an Account</a>
+    							<div class="form-group">
+        							<label for="coupon">Coupon Code</label>
+        							<select name="coupon" class="form-control" onchange="processCouponCode(this.value)">
+            							<option value="">No Coupon</option>
+            							<option value="FREESHIP">Free ship coupon</option>
+            							<option value="DISCOUNT100">Discount $100 (For orders from $1000)</option>
+            							<option value="DISCOUNT10P">Discount 10% (For orders from $10000)</option>
+        							</select>
+    							</div>
 							</div>
 						</div>
 					</form><!-- END -->
@@ -105,20 +113,20 @@
 								<h3 class="billing-heading mb-4">Your Order</h3>
 								<p class="d-flex">
 									<span>Subtotal</span>
-									<span>${sessionScope.total}$</span>
+									<span id="subtotal">${sessionScope.subtotal}$</span>
 								</p>
 								<p class="d-flex">
 									<span>Shipping</span>
-									<span>0$</span>
+									<span id="shipping">${sessionScope.shipping}$</span>
 								</p>
 								<p class="d-flex">
 									<span>Discount</span>
-									<span>0$</span>
+									<span id="discount">0$</span>
 								</p>
 								<hr>
 								<p class="d-flex total-price">
 									<span>Total</span>
-									<span>${sessionScope.total}$</span>
+									<span id="total">${sessionScope.total}$</span>
 								</p>
 							</div>
 						</div>
@@ -128,7 +136,7 @@
 								<div class="form-group">
 									<div class="col-md-12">
 										<div class="radio">
-											<label><input type="radio" name="optradio" class="mr-2"> Cash</label>
+											<label><input type="radio" name="optradio" class="mr-2" checked> Cash</label>
 										</div>
 									</div>
 								</div>

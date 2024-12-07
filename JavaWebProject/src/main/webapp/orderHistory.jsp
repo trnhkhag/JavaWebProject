@@ -55,7 +55,7 @@
             <div class="infohis">
                 <img class="imginfohis" src="images/ava_info.jpg"  alt="">
                 <div class="headinfohis">
-                    <div class="nameinfo">${currentUser.fullname}<br> SĐT: ${currentUser.phone}</div>
+                    <div class="nameinfo">Full Name: ${currentUser.fullname}<br> Phone Number: ${currentUser.phone}</div>
                     <div><a class="_78QHr1" href=""><svg width="12" height="12" viewBox="0 0 12 12"
                                 xmlns="http://www.w3.org/2000/svg" style="margin-right: 4px;">
                                 </svg></a></div>
@@ -114,9 +114,9 @@
                                     <div class="mnhis">${o.total}$</div>
                                 </div>
                                 <div class="buyhis">
-                                    <div class="evaluatehis"><button class="stardust-button--primary btnhis">Rating</button>
-                                    </div>
-                                    <div class="reorderhis"><button class=" stardust-button--secondary btnhis">Buy more</button>
+                                    <!-- <div class="evaluatehis"><button class="stardust-button--primary btnhis">Rating</button>
+                                    </div> -->
+                                    <div class="reorderhis"><button class=" stardust-button--secondary btnhis" onclick="window.location.href='${pageContext.request.contextPath}/Shop';">Buy more</button>
                                     </div>
                                 </div>
                             </div>

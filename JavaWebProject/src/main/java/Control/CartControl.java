@@ -37,12 +37,18 @@ public class CartControl extends HttpServlet {
         List<Product> cart = (List<Product>) session.getAttribute("cart");
 		
 		// Calculate the new total
+        double subtotal = 0;
+        double shipping = 0;
         double total = 0;
-        if (cart != null) {
+        if (cart != null && cart.size() > 0) {
+        	shipping = 2.0;
         	for (Product product : cart) {
-                total += product.getPrice() * product.getQuantity();
+                subtotal += product.getPrice() * product.getQuantity();
             }
         }
+        session.setAttribute("shipping", shipping);
+        session.setAttribute("subtotal", subtotal);
+        total = subtotal + shipping;
         session.setAttribute("total", total);
 		
 		this.getServletContext().getRequestDispatcher("/cart.jsp").forward(request, response);
