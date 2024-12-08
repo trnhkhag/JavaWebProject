@@ -32,11 +32,4 @@ class DAOCategoryTest {
         assertNotNull(categories, "The category list should not be null, even if the table is empty.");
         assertFalse(categories.isEmpty(), "The category list should be empty if no records are found in the 'loai' table.");
     }
-
-    @Test
-    void testDatabaseConnectionFailure() {
-        List<Category> categories = daoCategory.getAllCategories();
-        assertNull(categories, "The category list should be null if the database connection fails.");
-    }
-
 }

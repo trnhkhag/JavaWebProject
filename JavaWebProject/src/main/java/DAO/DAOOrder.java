@@ -52,7 +52,7 @@ public class DAOOrder {
 		try {
 			List<Order> olist = new ArrayList<>();
 			Connection conn = DBContext.getConnection();
-			String sql = "SELECT * FROM donhang WHERE MaNguoiDung = ? ORDER BY NgayLap DESC";
+			String sql = "SELECT * FROM donhang WHERE MaNguoiDung = ? ORDER BY NgayLap DESC, MaDH DESC";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, userId);
 			ResultSet rs = stmt.executeQuery();
@@ -97,6 +97,7 @@ public class DAOOrder {
 	
 	public static void main(String[] args) {
 		DAOOrder dao = new DAOOrder();
-		System.out.println(dao.getStatistical(5, 2023));
+		System.out.println("Hello");
+		System.out.println(dao.getLatestOrderId());
 	}
 }

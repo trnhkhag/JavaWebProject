@@ -99,7 +99,7 @@
                                                 </div>
                                             </div>
                                             <div class="item-status">
-                                                <div class="item-price text bold">${od.price}$</div>
+                                                <div class="item-price text bold">$${od.price}</div>
                                             </div>
                                             <div class="clear"></div>
                                         </div>
