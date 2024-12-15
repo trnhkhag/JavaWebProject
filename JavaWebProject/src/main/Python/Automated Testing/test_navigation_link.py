@@ -24,16 +24,17 @@ def test_navigation(driver):
     "/html/body/nav/div/div[3]/ul/li[2]/a/i"
 ]
     for start_xpath in xpaths:
-        # Nhấn vào trang đầu tiên
         driver.find_element(By.XPATH, start_xpath).click()
         time.sleep(1)
         for target_xpath in xpaths:
-            if start_xpath != target_xpath:  # Tránh tự quay lại trang hiện tại
+            temp = driver.find_element(By.XPATH, target_xpath)
+            text_title_case = temp.text.title()  
+            # print("Checking navigation for: ", temp2.text)
+            if start_xpath != target_xpath: 
                 driver.find_element(By.XPATH, target_xpath).click()
+                # print("Url: ", driver.current_url)
                 time.sleep(2)
-                # Kiểm tra xem điều hướng có thành công hay không
-                # Bạn có thể sử dụng tiêu đề trang hoặc URL để xác minh
-                assert driver.current_url != "", f"Navigation failed for {target_xpath}"
+                assert text_title_case in driver.current_url , f"Navigation failed for {target_xpath}"
 
 def test_link(driver):
     home_page = web_url

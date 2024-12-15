@@ -6,7 +6,7 @@ import java.util.List;
 import Entity.User;
 import DAO.DAOUser;
 
-public class DAOUserTest {
+public class DAOUSERTest {
     private DAOUser daoUser;
 
     @BeforeEach
@@ -16,17 +16,32 @@ public class DAOUserTest {
 
     @Test
     public void testInsert() {
-    	User user = new User("hongkong2", "12345", "admin@gmail.com", "0311233211", "Customer");
+    	User user = new User("tommy", "123456", "admin@gmail.com", "0311233211", "Customer");
         boolean result = daoUser.insert(user);
 //        System.out.println("Insert result: " + result);
 	        assertTrue(result, "Insert user should return true if the insertion is successful");
+	        
     }
+
+   @Test
+   public void testInsertInvalidUser() {
+       User invalidUser = new User("", "12345", "invalid-email", "12345", "InvalidRole");
+       boolean result = daoUser.insert(invalidUser);
+       assertFalse(result, "Insert should return false if the user data is invalid");
+   }
 
     @Test
     public void testDelete() {
-        int userId = 58; 
+        int userId = 50; 
         boolean result = daoUser.delete(userId);
         assertTrue(result, "Delete should return true if the deletion is successful");
+    }
+    
+    @Test
+    public void testDeleteNonExistentUser() {
+        int nonExistentUserId = 99999; 
+        boolean result = daoUser.delete(nonExistentUserId);
+        assertFalse(result, "Delete should return false if the user ID does not exist");
     }
 
     @Test
@@ -43,6 +58,14 @@ public class DAOUserTest {
         String password = "invalidPass";
         boolean result = daoUser.check(username, password);
         assertFalse(result, "Check should return false if the user does not exist");
+    }
+    
+    @Test
+    public void testCheckInvalidPassword() {
+        String username = "khang";
+        String invalidPassword = "wrongPassword";
+        boolean result = daoUser.check(username, invalidPassword);
+        assertFalse(result, "Check should return false if the password is incorrect");
     }
 
     @Test
@@ -73,7 +96,7 @@ public class DAOUserTest {
 
         boolean result = daoUser.update(userId, newUsername, newPassword, newEmail, newPhone, newRole);
         assertTrue(result, "Update should return true if the update is successful");
-
+        
         User updatedUser = daoUser.getUserById(userId);
         assertEquals(newUsername, updatedUser.getUsername(), "Username should be updated");
         assertEquals(newPassword, updatedUser.getPassword(), "Password should be updated");
@@ -82,6 +105,20 @@ public class DAOUserTest {
         assertEquals(newRole, updatedUser.getRole(), "Role should be updated");
         
     }
+    
+    @Test
+    public void testUpdateWithoutChanges() {
+        int userId = 52; 
+        String username = "khang"; // Same as current value
+        String password = "12345678"; // Same as current value
+        String email = "khang@gmail.com"; // Same as current value
+        String phone = "0987654321"; // Same as current value
+        String role = "user"; // Same as current value
+
+        boolean result = daoUser.update(userId, username, password, email, phone, role);
+        assertFalse(result, "Update should return false if no changes were made");
+    }
+    
     @Test
     public void testIsUsernameExist() {
         String username = "khang";
@@ -89,6 +126,14 @@ public class DAOUserTest {
         assertTrue(result, "isUsernameExist should return true if the username exists");
     }
 
+    @Test
+    public void testGetUserAfterDelete() {
+        int deletedUserId = 58; 
+        daoUser.delete(deletedUserId);
+        User user = daoUser.getUserById(deletedUserId);
+        assertNull(user, "GetUser should return null if the user has been deleted");
+    }
+    
     @Test
     public void testGetAllUsers() {
         List<User> users = daoUser.getAllUsers();
