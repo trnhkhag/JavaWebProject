@@ -19,15 +19,15 @@ class DAOOrderDetailTest {
 		daoOrderDetail = new DAOOrderDetail();
 	}
 
-//	@Test
-//	void testInsert() {
-//		orderDetail_1 = new OrderDetail(30, 55, 1, 9280);
-//		orderDetail_2 = new OrderDetail(30, 54, 1, 18980);
-//		boolean isInsert_1 = daoOrderDetail.insert(orderDetail_1);
-//		boolean isInsert_2 = daoOrderDetail.insert(orderDetail_2);
-//		assertTrue(isInsert_1 && isInsert_2, "The order should be inserted successfully into the database.");
-//	}
-//	
+	@Test
+	void testInsert() {
+		orderDetail_1 = new OrderDetail(30, 55, 1, 9280);
+		orderDetail_2 = new OrderDetail(30, 54, 1, 18980);
+		boolean isInsert_1 = daoOrderDetail.insert(orderDetail_1);
+		boolean isInsert_2 = daoOrderDetail.insert(orderDetail_2);
+		assertTrue(isInsert_1 && isInsert_2, "The order should be inserted successfully into the database.");
+	}
+	
 	@Test
 	void testGetAllOrderDetails() {
 		List<OrderDetail> oderDetail_id48 = daoOrderDetail.getAllOrderDetails(48);

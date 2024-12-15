@@ -166,12 +166,54 @@ public class DAOUser {
 		return false;
 	}
 	
+	public boolean update(String email, String password) {
+		try {
+			boolean isUpdated = false;
+			Connection conn = DBContext.getConnection();
+			String sql = "UPDATE nguoidung SET MatKhau = ? WHERE Email = ?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, password);
+			stmt.setString(2, email);
+			if (stmt.executeUpdate() > 0) {
+				isUpdated = true;
+			}
+			stmt.close();
+			conn.close();
+			return isUpdated;
+		} catch (Exception ex) {
+			// TODO: handle exception
+			System.out.println("ERROR: " + ex.getMessage());
+		}
+		return false;
+	}
+	
 	public boolean isUsernameExist(String username) {
 		try {
 			Connection conn = DBContext.getConnection();
 			String sql = "SELECT * FROM nguoidung WHERE TenDangNhap = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, username);
+			ResultSet rs = stmt.executeQuery();
+			boolean isExist = false;
+			if (rs.next()) {
+				isExist = true;
+			}
+			stmt.close();
+			conn.close();
+			return isExist;
+		} catch (Exception ex) {
+			// TODO: handle exception
+			ex.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean isEmailExist(String email) {
+		try {
+			Connection conn = DBContext.getConnection();
+			String sql = "SELECT * FROM nguoidung WHERE Email = ?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, email);
 			ResultSet rs = stmt.executeQuery();
 			boolean isExist = false;
 			if (rs.next()) {

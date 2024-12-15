@@ -61,7 +61,7 @@
 						Don't have an account?<a href="${pageContext.request.contextPath}/Register">Sign Up</a>
 					</div>
 					<div class="d-flex justify-content-center">
-						<a href="#">Forgot your password?</a>
+						<a href="${pageContext.request.contextPath}/Forgotpassword">Forgot your password?</a>
 					</div>
 				</div>
 			</div>

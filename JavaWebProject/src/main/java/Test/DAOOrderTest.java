@@ -20,12 +20,12 @@ class DAOOrderTest {
         
     }
 	
-//	@Test
-//	void testInsert() {
-//		order = new Order("2024-10-13", 28260, 49);
-//		boolean isInserted = daoOrder.insert(order);
-//		assertTrue(isInserted, "The order should be inserted successfully into the database.");
-//	}
+	@Test
+	void testInsert() {
+		order = new Order("2024-10-13", 28260, 49);
+		boolean isInserted = daoOrder.insert(order);
+		assertTrue(isInserted, "The order should be inserted successfully into the database.");
+	}
 	
 	@Test 
 	void testLatestOrderId () {
